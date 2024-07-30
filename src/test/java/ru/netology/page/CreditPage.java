@@ -25,10 +25,10 @@ public class CreditPage {
     private final SelenideElement errorMessage = $(withText("Ошибка"));
     private final SelenideElement invalidFormatError = $(withText("Неверный формат"));
     private final SelenideElement fieldIsRequired = $(withText("Поле обязательно для заполнения"));
-    private final SelenideElement errorMessageForInvalidYear = $(withText("Истёк срок действия карты"));
-    private final SelenideElement errorMessageForInvalidMonth = $(withText("Неверно указан срок действия карты"));
+    private final SelenideElement errorMessageForInvalidYearMonth = $(withText("Истёк срок действия карты"));
+    private final SelenideElement errorMessageForInvalidData = $(withText("Неверно указан срок действия карты"));
 
-    public void enterCreditCardData(DataHelper.CardInfo cardInfo){
+    public void enterCardData(DataHelper.CardInfo cardInfo){
         cardNumberField.setValue(cardInfo.getCardNumber());
         expirationMonthField.setValue(cardInfo.getMonth());
         expirationYearField.setValue(cardInfo.getYear());
@@ -37,27 +37,32 @@ public class CreditPage {
         continueButton.click();
     }
 
-    public void successfulMessageCreditCardPayment(){
+    public void successfulMessageCardPayment(DataHelper.CardInfo cardInfo){
         successfulMessage.shouldBe(visible, Duration.ofSeconds(20));
     }
 
-    public void errorMessageCreditCardPayment(){
+    public void errorMessageCardPayment(DataHelper.CardInfo cardInfo){
         errorMessage.shouldBe(visible, Duration.ofSeconds(20));
     }
 
-    public void invalidCreditFormatError() {
+    public void invalidFormatError(DataHelper.CardInfo cardInfo) {
         invalidFormatError.shouldBe(visible);
     }
 
-    public void fieldCreditIsRequired() {
+    public void invalidFormatErrorAndFieldIsRequired(DataHelper.CardInfo cardInfo) {
+        invalidFormatError.shouldBe(visible);
         fieldIsRequired.shouldBe(visible);
     }
 
-    public void errorMessageCreditForInvalidYear() {
-        errorMessageForInvalidYear.shouldBe(visible);
+    public void fieldIsRequired(DataHelper.CardInfo cardInfo) {
+        fieldIsRequired.shouldBe(visible);
     }
 
-    public void errorMessageCreditForInvalidMonth() {
-        errorMessageForInvalidMonth.shouldBe(visible);
+    public void errorMessageForInvalidYearMonth(DataHelper.CardInfo cardInfo) {
+        errorMessageForInvalidYearMonth.shouldBe(visible);
+    }
+
+    public void errorMessageForInvalidData(DataHelper.CardInfo cardInfo) {
+        errorMessageForInvalidData.shouldBe(visible);
     }
 }

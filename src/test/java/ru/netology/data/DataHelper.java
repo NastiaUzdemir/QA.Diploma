@@ -40,7 +40,17 @@ public class DataHelper {
         );
     }
 
-    public CardInfo getCardInfoCurrentYearAndMonth() {
+    public CardInfo getCardInfoCurrentYearAndMonthApproved() {
+        return new CardInfo(
+                getCardNumberApproved(),
+                dataGenerator.getShiftedMonth(0).getMonth(),
+                dataGenerator.getShiftedYear(0).getYear(),
+                enOptionFaker.name().fullName(),
+                dataGenerator.generateRandomCVV()
+        );
+    }
+
+    public CardInfo getCardInfoCurrentYearAndMonthDeclined() {
         return new CardInfo(
                 getCardNumberDeclined(),
                 dataGenerator.getShiftedMonth(0).getMonth(),
@@ -110,11 +120,21 @@ public class DataHelper {
         );
     }
 
+    public CardInfo getZeroCVV(){
+        return new CardInfo(
+                getCardNumberApproved(),
+                dataGenerator.getShiftedMonth(1).getMonth(),
+                dataGenerator.getShiftedYear(2).getYear(),
+                enOptionFaker.name().fullName(),
+                "000"
+        );
+    }
+
     public CardInfo getExpiredMonthCard(){
         return new CardInfo(
                 getCardNumberApproved(),
                 dataGenerator.getShiftedMonth(-1).getMonth(),
-                dataGenerator.getShiftedYear(2).getYear(),
+                dataGenerator.getShiftedYear(0).getYear(),
                 enOptionFaker.name().fullName(),
                 dataGenerator.generateRandomCVV()
         );

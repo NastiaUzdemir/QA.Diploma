@@ -16,7 +16,7 @@ public class MainPage {
         return new DebitPage();
     }
 
-    public CreditPage buyOnCredit() {
+    public CreditPage buyOnCredit(DataHelper.CardInfo cardInfo) {
         creditButton.click();
         return new CreditPage();
     }

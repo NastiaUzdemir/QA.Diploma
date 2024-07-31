@@ -152,6 +152,26 @@ public class DebitCardTest {
         debitPage.errorMessageCardPayment(cardInfo);
     }
 
+    @DisplayName("Оплата по карте с именем владельца карты в поле «Владелец», если поле заполнено одним словом")
+    @Test
+    public void paymentCardNameOneWord(){
+        var mainPage = new MainPage();
+        var cardInfo = new DataHelper().getNameOneWord();
+        var debitPage = mainPage.payOnCard(cardInfo);
+        debitPage.enterCardData(cardInfo);
+        debitPage.errorMessageCardPayment(cardInfo);
+    }
+
+    @DisplayName("Оплата по карте с именем владельца карты в поле «Владелец», если поле заполнено спецсимволами")
+    @Test
+    public void paymentCardNameSpecialCharacters(){
+        var mainPage = new MainPage();
+        var cardInfo = new DataHelper().getNameSpecialCharacters();
+        var debitPage = mainPage.payOnCard(cardInfo);
+        debitPage.enterCardData(cardInfo);
+        debitPage.errorMessageCardPayment(cardInfo);
+    }
+
     @DisplayName("Оплата по карте с указанием невалидного формата поля CVC/CVV")
     @Test
     public void paymentCardInvalidCVV(){

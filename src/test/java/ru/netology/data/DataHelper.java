@@ -190,6 +190,26 @@ public class DataHelper {
         );
     }
 
+    public CardInfo getNameOneWord(){
+        return new CardInfo(
+                getCardNumberApproved(),
+                dataGenerator.getShiftedMonth(1).getMonth(),
+                dataGenerator.getShiftedYear(2).getYear(),
+                "Ivanov",
+                dataGenerator.generateRandomCVV()
+        );
+    }
+
+    public CardInfo getNameSpecialCharacters(){
+        return new CardInfo(
+                getCardNumberApproved(),
+                dataGenerator.getShiftedMonth(1).getMonth(),
+                dataGenerator.getShiftedYear(2).getYear(),
+                "%$$#@&&*",
+                dataGenerator.generateRandomCVV()
+        );
+    }
+
     public CardInfo getInvalidCVV(){
         return new CardInfo(
                 getCardNumberApproved(),

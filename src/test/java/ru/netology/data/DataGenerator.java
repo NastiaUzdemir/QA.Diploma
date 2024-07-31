@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import static ru.netology.data.DataHelper.faker;
 
 public class DataGenerator {
+    private static int length;
     private final LocalDate actualData = LocalDate.now();
     private final DateTimeFormatter formatterYear = DateTimeFormatter.ofPattern("yy");
     private final DateTimeFormatter formatterMonth = DateTimeFormatter.ofPattern("MM");

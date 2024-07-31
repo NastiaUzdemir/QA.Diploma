@@ -210,6 +210,19 @@ public class DataHelper {
         );
     }
 
+    public CardInfo getNameRandomLetters(){
+        return new CardInfo(
+                getCardNumberApproved(),
+                dataGenerator.getShiftedMonth(1).getMonth(),
+                dataGenerator.getShiftedYear(2).getYear(),
+                "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" +
+                        "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" +
+                        "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" +
+                        "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                dataGenerator.generateRandomCVV()
+        );
+    }
+
     public CardInfo getInvalidCVV(){
         return new CardInfo(
                 getCardNumberApproved(),

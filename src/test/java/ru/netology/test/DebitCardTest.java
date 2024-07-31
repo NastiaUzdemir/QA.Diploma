@@ -172,6 +172,16 @@ public class DebitCardTest {
         debitPage.errorMessageCardPayment(cardInfo);
     }
 
+    @DisplayName("Оплата по карте с именем владельца карты в поле «Владелец» без ограничений на ввод букв")
+    @Test
+    public void paymentCardNameNoRestrictionsInput(){
+        var mainPage = new MainPage();
+        var cardInfo = new DataHelper().getNameRandomLetters();
+        var debitPage = mainPage.payOnCard(cardInfo);
+        debitPage.enterCardData(cardInfo);
+        debitPage.errorMessageCardPayment(cardInfo);
+    }
+
     @DisplayName("Оплата по карте с указанием невалидного формата поля CVC/CVV")
     @Test
     public void paymentCardInvalidCVV(){

@@ -155,7 +155,7 @@ public class CreditCardTest {
     public void paymentCardNameOneWord(){
         var mainPage = new MainPage();
         var cardInfo = new DataHelper().getNameOneWord();
-        var creditPage = mainPage.payOnCard(cardInfo);
+        var creditPage = mainPage.buyOnCredit(cardInfo);
         creditPage.enterCardData(cardInfo);
         creditPage.errorMessageCardPayment(cardInfo);
     }
@@ -165,7 +165,17 @@ public class CreditCardTest {
     public void paymentCardNameSpecialCharacters(){
         var mainPage = new MainPage();
         var cardInfo = new DataHelper().getNameSpecialCharacters();
-        var creditPage = mainPage.payOnCard(cardInfo);
+        var creditPage = mainPage.buyOnCredit(cardInfo);
+        creditPage.enterCardData(cardInfo);
+        creditPage.errorMessageCardPayment(cardInfo);
+    }
+
+    @DisplayName("Оплата по карте с именем владельца карты в поле «Владелец» без ограничений на ввод букв")
+    @Test
+    public void paymentCardNameNoRestrictionsInput(){
+        var mainPage = new MainPage();
+        var cardInfo = new DataHelper().getNameRandomLetters();
+        var creditPage = mainPage.buyOnCredit(cardInfo);
         creditPage.enterCardData(cardInfo);
         creditPage.errorMessageCardPayment(cardInfo);
     }

@@ -4,63 +4,65 @@ import com.github.javafaker.Faker;
 import lombok.Value;
 import java.util.Locale;
 
+import static ru.netology.data.DataGenerator.*;
+
 public class DataHelper {
     static Faker faker = new Faker();
     static Faker enOptionFaker = new Faker(new Locale("en"));
     static Faker ruOptionFaker = new Faker(new Locale("ru"));
-    static DataGenerator dataGenerator = new DataGenerator();
+    private static final DataGenerator dataGenerator = new DataGenerator();
 
-    public String getCardNumberApproved(){
+    public static String getCardNumberApproved(){
         return "4444444444444441";
     }
-    public String getCardNumberDeclined(){
+    public static String getCardNumberDeclined(){
         return "4444444444444442";
     }
-    public String getCarNumberFake(){
+    public static String getCarNumberFake(){
         return "444444444";
     }
 
-    public CardInfo getValidCardInfo(){
+    public static CardInfo getValidCardInfo(){
         return new CardInfo(
                 getCardNumberApproved(),
-                dataGenerator.getShiftedMonth(1).getMonth(),
-                dataGenerator.getShiftedYear(2).getYear(),
+                getShiftedMonth(1),
+                getShiftedYear(2),
                 enOptionFaker.name().fullName(),
-                dataGenerator.generateRandomCVV()
+                generateRandomCVV()
         );
     }
 
-    public CardInfo getInvalidCardInfo(){
+    public static CardInfo getInvalidCardInfo(){
         return new CardInfo(
                 getCardNumberDeclined(),
-                dataGenerator.getShiftedMonth(1).getMonth(),
-                dataGenerator.getShiftedYear(2).getYear(),
+                getShiftedMonth(1),
+                getShiftedYear(2),
                 enOptionFaker.name().fullName(),
-                dataGenerator.generateRandomCVV()
+                generateRandomCVV()
         );
     }
 
-    public CardInfo getCardInfoCurrentYearAndMonthApproved() {
+    public static CardInfo getCardInfoCurrentYearAndMonthApproved() {
         return new CardInfo(
                 getCardNumberApproved(),
-                dataGenerator.getShiftedMonth(0).getMonth(),
-                dataGenerator.getShiftedYear(0).getYear(),
+                getShiftedMonth(0),
+                getShiftedYear(0),
                 enOptionFaker.name().fullName(),
-                dataGenerator.generateRandomCVV()
+                generateRandomCVV()
         );
     }
 
-    public CardInfo getCardInfoCurrentYearAndMonthDeclined() {
+    public static CardInfo getCardInfoCurrentYearAndMonthDeclined() {
         return new CardInfo(
                 getCardNumberDeclined(),
-                dataGenerator.getShiftedMonth(0).getMonth(),
-                dataGenerator.getShiftedYear(0).getYear(),
+                getShiftedMonth(0),
+                getShiftedYear(0),
                 enOptionFaker.name().fullName(),
-                dataGenerator.generateRandomCVV()
+                generateRandomCVV()
         );
     }
 
-    public CardInfo getSendingAFormWithEmptyFields() {
+    public static CardInfo getSendingAFormWithEmptyFields() {
         return new CardInfo(
                 "",
                 "",
@@ -70,196 +72,196 @@ public class DataHelper {
         );
     }
 
-    public CardInfo getCardNumberEmptyField() {
+    public static CardInfo getCardNumberEmptyField() {
         return new CardInfo(
                 "",
-                dataGenerator.getShiftedMonth(5).getMonth(),
-                dataGenerator.getShiftedYear(1).getYear(),
+                getShiftedMonth(5),
+                getShiftedYear(1),
                 enOptionFaker.name().fullName(),
-                dataGenerator.generateRandomCVV()
+                generateRandomCVV()
         );
     }
 
-    public CardInfo getMonthEmptyField() {
+    public static CardInfo getMonthEmptyField() {
         return new CardInfo(
                 getCardNumberApproved(),
                 "",
-                dataGenerator.getShiftedYear(1).getYear(),
+                getShiftedYear(1),
                 enOptionFaker.name().fullName(),
-                dataGenerator.generateRandomCVV()
+                generateRandomCVV()
         );
     }
 
-    public CardInfo getYearEmptyFiled(){
+    public static CardInfo getYearEmptyFiled(){
         return new CardInfo(
                 getCardNumberApproved(),
-                dataGenerator.getShiftedMonth(1).getMonth(),
+                getShiftedMonth(1),
                 "",
                 enOptionFaker.name().fullName(),
-                dataGenerator.generateRandomCVV()
+                generateRandomCVV()
         );
     }
 
-    public CardInfo getNameEmptyFiled(){
+    public static CardInfo getNameEmptyFiled(){
         return new CardInfo(
                 getCardNumberApproved(),
-                dataGenerator.getShiftedMonth(1).getMonth(),
-                dataGenerator.getShiftedYear(2).getYear(),
+                getShiftedMonth(1),
+                getShiftedYear(2),
                 "",
-                dataGenerator.generateRandomCVV()
+                generateRandomCVV()
         );
     }
 
-    public CardInfo getCVCEmptyFiled(){
+    public static CardInfo getCVCEmptyFiled(){
         return new CardInfo(
                 getCardNumberApproved(),
-                dataGenerator.getShiftedMonth(1).getMonth(),
-                dataGenerator.getShiftedYear(2).getYear(),
+                getShiftedMonth(1),
+                getShiftedYear(2),
                 enOptionFaker.name().fullName(),
                 ""
         );
     }
 
-    public CardInfo getZeroCVV(){
+    public static CardInfo getZeroCVV(){
         return new CardInfo(
                 getCardNumberApproved(),
-                dataGenerator.getShiftedMonth(1).getMonth(),
-                dataGenerator.getShiftedYear(2).getYear(),
+                getShiftedMonth(1),
+                getShiftedYear(2),
                 enOptionFaker.name().fullName(),
                 "000"
         );
     }
 
-    public CardInfo getExpiredMonthCard(){
+    public static CardInfo getExpiredMonthCard(){
         return new CardInfo(
                 getCardNumberApproved(),
-                dataGenerator.getShiftedMonth(-1).getMonth(),
-                dataGenerator.getShiftedYear(0).getYear(),
+                getShiftedMonth(-1),
+                getShiftedYear(0),
                 enOptionFaker.name().fullName(),
-                dataGenerator.generateRandomCVV()
+                generateRandomCVV()
         );
     }
 
-    public CardInfo getExpiredYearCard(){
+    public static CardInfo getExpiredYearCard(){
         return new CardInfo(
                 getCardNumberApproved(),
-                dataGenerator.getShiftedMonth(1).getMonth(),
-                dataGenerator.getShiftedYear(-1).getYear(),
+                getShiftedMonth(1),
+                getShiftedYear(-1),
                 enOptionFaker.name().fullName(),
-                dataGenerator.generateRandomCVV()
+                generateRandomCVV()
         );
     }
 
-    public CardInfo getInvalidCardNumber(){
+    public static CardInfo getInvalidCardNumber(){
         return new CardInfo(
                 getCarNumberFake(),
-                dataGenerator.getShiftedMonth(1).getMonth(),
-                dataGenerator.getShiftedYear(1).getYear(),
+                getShiftedMonth(1),
+                getShiftedYear(1),
                 enOptionFaker.name().fullName(),
-                dataGenerator.generateRandomCVV()
+                generateRandomCVV()
         );
     }
 
-    public CardInfo getFakeMonth(){
+    public static CardInfo getFakeMonth(){
         return new CardInfo(
                 getCardNumberApproved(),
-                dataGenerator.fakeMonth().getMonth(),
-                dataGenerator.getShiftedYear(1).getYear(),
+                fakeMonth(),
+                getShiftedYear(1),
                 enOptionFaker.name().fullName(),
-                dataGenerator.generateRandomCVV()
+                generateRandomCVV()
         );
     }
 
-    public CardInfo getFakeYear(){
+    public static CardInfo getFakeYear(){
         return new CardInfo(
                 getCardNumberApproved(),
-                dataGenerator.getShiftedMonth(1).getMonth(),
-                dataGenerator.fakeYear().getYear(),
+                getShiftedMonth(1),
+                fakeYear(),
                 enOptionFaker.name().fullName(),
-                dataGenerator.generateRandomCVV()
+                generateRandomCVV()
         );
     }
 
-    public CardInfo getNameFilledWithNumber(){
+    public static CardInfo getNameFilledWithNumber(){
         return new CardInfo(
                 getCardNumberApproved(),
-                dataGenerator.getShiftedMonth(1).getMonth(),
-                dataGenerator.getShiftedYear(1).getYear(),
-                dataGenerator.generateRandomNumber(),
-                dataGenerator.generateRandomCVV()
+                getShiftedMonth(1),
+                getShiftedYear(1),
+                generateRandomNumber(),
+                generateRandomCVV()
         );
     }
 
-    public CardInfo getNameOneWord(){
+    public static CardInfo getNameOneWord(){
         return new CardInfo(
                 getCardNumberApproved(),
-                dataGenerator.getShiftedMonth(1).getMonth(),
-                dataGenerator.getShiftedYear(2).getYear(),
+                getShiftedMonth(1),
+                getShiftedYear(2),
                 "Ivanov",
-                dataGenerator.generateRandomCVV()
+                generateRandomCVV()
         );
     }
 
-    public CardInfo getNameSpecialCharacters(){
+    public static CardInfo getNameSpecialCharacters(){
         return new CardInfo(
                 getCardNumberApproved(),
-                dataGenerator.getShiftedMonth(1).getMonth(),
-                dataGenerator.getShiftedYear(2).getYear(),
+                getShiftedMonth(1),
+                getShiftedYear(2),
                 "%$$#@&&*",
-                dataGenerator.generateRandomCVV()
+                generateRandomCVV()
         );
     }
 
-    public CardInfo getNameRandomLetters(){
+    public static CardInfo getNameRandomLetters(){
         return new CardInfo(
                 getCardNumberApproved(),
-                dataGenerator.getShiftedMonth(1).getMonth(),
-                dataGenerator.getShiftedYear(2).getYear(),
+                getShiftedMonth(1),
+                getShiftedYear(2),
                 "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" +
                         "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" +
                         "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" +
                         "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                dataGenerator.generateRandomCVV()
+                generateRandomCVV()
         );
     }
 
-    public CardInfo getInvalidCVV(){
+    public static CardInfo getInvalidCVV(){
         return new CardInfo(
                 getCardNumberApproved(),
-                dataGenerator.getShiftedMonth(1).getMonth(),
-                dataGenerator.getShiftedYear(3).getYear(),
+                getShiftedMonth(1),
+                getShiftedYear(3),
                 enOptionFaker.name().fullName(),
                 Integer.toString(enOptionFaker.number().numberBetween(0, 99))
         );
     }
 
-    public CardInfo getZeroInTheMonthFiled(){
+    public static CardInfo getZeroInTheMonthFiled(){
         return new CardInfo(
                 getCardNumberApproved(),
                 "00",
-                dataGenerator.getShiftedYear(3).getYear(),
+                getShiftedYear(3),
                 enOptionFaker.name().fullName(),
-                dataGenerator.generateRandomCVV()
+                generateRandomCVV()
         );
     }
 
-    public CardInfo getZeroInTheCVVFiled(){
+    public static CardInfo getZeroInTheCVVFiled(){
         return new CardInfo(
                 getCardNumberApproved(),
-                dataGenerator.getShiftedMonth(1).getMonth(),
-                dataGenerator.getShiftedYear(3).getYear(),
+                getShiftedMonth(1),
+                getShiftedYear(3),
                 enOptionFaker.name().fullName(),
                 "000"
         );
     }
 
-    public CardInfo getNameInRussian(){
+    public static CardInfo getNameInRussian(){
         return new CardInfo(
                 getCardNumberApproved(),
-                dataGenerator.getShiftedMonth(1).getMonth(),
-                dataGenerator.getShiftedYear(1).getYear(),
+                getShiftedMonth(1),
+                getShiftedYear(1),
                 ruOptionFaker.name().fullName(),
-                dataGenerator.generateRandomCVV()
+                generateRandomCVV()
         );
     }
 

@@ -39,32 +39,32 @@ public class DebitPage extends MainPage {
         continueButton.click();
     }
 
-    public void successfulMessageCardPayment(DataHelper.CardInfo cardInfo){
+    public void successfulMessageCardPayment(){
         successfulMessage.shouldBe(visible, Duration.ofSeconds(20));
     }
 
-    public void errorMessageCardPayment(DataHelper.CardInfo cardInfo){
+    public void errorMessageCardPayment(){
         errorMessage.shouldBe(visible, Duration.ofSeconds(20));
     }
 
-    public void invalidFormatError(DataHelper.CardInfo cardInfo) {
+    public void invalidFormatError() {
         invalidFormatError.shouldBe(visible);
     }
 
-    public void invalidFormatErrorAndFieldIsRequired(DataHelper.CardInfo cardInfo) {
+    public void invalidFormatErrorAndFieldIsRequired() {
         invalidFormatError.shouldBe(visible);
         fieldIsRequired.shouldBe(visible);
     }
 
-    public void fieldIsRequired(DataHelper.CardInfo cardInfo) {
+    public void fieldIsRequired() {
         fieldIsRequired.shouldBe(visible);
     }
 
-    public void errorMessageForInvalidYearMonth(DataHelper.CardInfo cardInfo) {
+    public void errorMessageForInvalidYearMonth() {
         errorMessageForInvalidYearMonth.shouldBe(visible);
     }
 
-    public void errorMessageForInvalidData(DataHelper.CardInfo cardInfo) {
+    public void errorMessageForInvalidData() {
         errorMessageForInvalidData.shouldBe(visible);
     }
 

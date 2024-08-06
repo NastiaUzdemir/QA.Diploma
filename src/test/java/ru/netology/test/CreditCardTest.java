@@ -30,10 +30,10 @@ public class CreditCardTest {
     @Test
     public void paymentCreditCardDECLINED(){
         var mainPage = new MainPage();
-        var cardInfo = new DataHelper().getInvalidCardInfo();
-        var creditPage = mainPage.buyOnCredit(cardInfo);
+        var cardInfo = DataHelper.getInvalidCardInfo();
+        var creditPage = mainPage.buyOnCredit();
         creditPage.enterCardData(cardInfo);
-        creditPage.successfulMessageCardPayment(cardInfo);
+        creditPage.successfulMessageCardPayment();
 
         var paymentId = SQLHelper.getPaymentId();
         var statusPayment = SQLHelper.getCreditStatus(paymentId);
@@ -44,10 +44,10 @@ public class CreditCardTest {
     @Test
     public void paymentCreditCardAPPROVED(){
         var mainPage = new MainPage();
-        var cardInfo = new DataHelper().getValidCardInfo();
-        var creditPage = mainPage.buyOnCredit(cardInfo);
+        var cardInfo = DataHelper.getValidCardInfo();
+        var creditPage = mainPage.buyOnCredit();
         creditPage.enterCardData(cardInfo);
-        creditPage.errorMessageCardPayment(cardInfo);
+        creditPage.errorMessageCardPayment();
 
         var paymentId = SQLHelper.getPaymentId();
         var statusPayment = SQLHelper.getCreditStatus(paymentId);
@@ -58,10 +58,10 @@ public class CreditCardTest {
     @Test
     public void paymentCreditCardValidityPeriodMonth(){
         var mainPage = new MainPage();
-        var cardInfo = new DataHelper().getCardInfoCurrentYearAndMonthApproved();
-        var creditPage = mainPage.buyOnCredit(cardInfo);
+        var cardInfo = DataHelper.getCardInfoCurrentYearAndMonthApproved();
+        var creditPage = mainPage.buyOnCredit();
         creditPage.enterCardData(cardInfo);
-        creditPage.successfulMessageCardPayment(cardInfo);
+        creditPage.successfulMessageCardPayment();
 
         var paymentId = SQLHelper.getPaymentId();
         var statusPayment = SQLHelper.getCreditStatus(paymentId);
@@ -73,40 +73,40 @@ public class CreditCardTest {
     @Test
     public void paymentDebitCardEmptyFields(){
         var mainPage = new MainPage();
-        var cardInfo = new DataHelper().getSendingAFormWithEmptyFields();
-        var creditPage = mainPage.buyOnCredit(cardInfo);
+        var cardInfo = DataHelper.getSendingAFormWithEmptyFields();
+        var creditPage = mainPage.buyOnCredit();
         creditPage.enterCardData(cardInfo);
-        creditPage.invalidFormatErrorAndFieldIsRequired(cardInfo);
+        creditPage.invalidFormatErrorAndFieldIsRequired();
     }
 
     @DisplayName("Оплата с невалидным номером карты")
     @Test
     public void paymentDebitInvalidCard(){
         var mainPage = new MainPage();
-        var cardInfo = new DataHelper().getInvalidCardNumber();
-        var creditPage = mainPage.buyOnCredit(cardInfo);
+        var cardInfo = DataHelper.getInvalidCardNumber();
+        var creditPage = mainPage.buyOnCredit();
         creditPage.enterCardData(cardInfo);
-        creditPage.invalidFormatError(cardInfo);
+        creditPage.invalidFormatError();
     }
 
     @DisplayName("Оплата с невалидным значением месяца")
     @Test
     public void paymentDebitCardFakeMonth(){
         var mainPage = new MainPage();
-        var cardInfo = new DataHelper().getFakeMonth();
-        var creditPage = mainPage.buyOnCredit(cardInfo);
+        var cardInfo = DataHelper.getFakeMonth();
+        var creditPage = mainPage.buyOnCredit();
         creditPage.enterCardData(cardInfo);
-        creditPage.errorMessageForInvalidData(cardInfo);
+        creditPage.errorMessageForInvalidData();
     }
 
     @DisplayName("Оплата по карте с истекшим сроком действия карты (месяц)")
     @Test
     public void paymentDebitCardInvalidMonth(){
         var mainPage = new MainPage();
-        var cardInfo = new DataHelper().getExpiredMonthCard();
-        var creditPage = mainPage.buyOnCredit(cardInfo);
+        var cardInfo = DataHelper.getExpiredMonthCard();
+        var creditPage = mainPage.buyOnCredit();
         creditPage.enterCardData(cardInfo);
-        creditPage.errorMessageForInvalidData(cardInfo);
+        creditPage.errorMessageForInvalidData();
     }
 
 
@@ -114,90 +114,90 @@ public class CreditCardTest {
     @Test
     public void paymentDebitCardInvalidYear(){
         var mainPage = new MainPage();
-        var cardInfo = new DataHelper().getExpiredYearCard();
-        var creditPage = mainPage.buyOnCredit(cardInfo);
+        var cardInfo = DataHelper.getExpiredYearCard();
+        var creditPage = mainPage.buyOnCredit();
         creditPage.enterCardData(cardInfo);
-        creditPage.errorMessageForInvalidYearMonth(cardInfo);
+        creditPage.errorMessageForInvalidYearMonth();
     }
 
     @DisplayName("Оплата по карте с невалидным сроком действия карты (год)")
     @Test
     public void paymentDebitCardFakeYear(){
         var mainPage = new MainPage();
-        var cardInfo = new DataHelper().getFakeYear();
-        var creditPage = mainPage.buyOnCredit(cardInfo);
+        var cardInfo = DataHelper.getFakeYear();
+        var creditPage = mainPage.buyOnCredit();
         creditPage.enterCardData(cardInfo);
-        creditPage.errorMessageForInvalidData(cardInfo);
+        creditPage.errorMessageForInvalidData();
     }
 
     @DisplayName("Оплата по карте с числовым значением поля «Владелец»")
     @Test
     public void paymentCardNumericValueOwnerField(){
         var mainPage = new MainPage();
-        var cardInfo = new DataHelper().getNameFilledWithNumber();
-        var creditPage = mainPage.buyOnCredit(cardInfo);
+        var cardInfo = DataHelper.getNameFilledWithNumber();
+        var creditPage = mainPage.buyOnCredit();
         creditPage.enterCardData(cardInfo);
-        creditPage.errorMessageCardPayment(cardInfo);
+        creditPage.errorMessageCardPayment();
     }
 
     @DisplayName("Оплата по карте с именем владельца карты в поле «Владелец» на кирилице")
     @Test
     public void paymentCardNameOwnerInRussian(){
         var mainPage = new MainPage();
-        var cardInfo = new DataHelper().getNameInRussian();
-        var creditPage = mainPage.buyOnCredit(cardInfo);
+        var cardInfo = DataHelper.getNameInRussian();
+        var creditPage = mainPage.buyOnCredit();
         creditPage.enterCardData(cardInfo);
-        creditPage.errorMessageCardPayment(cardInfo);
+        creditPage.errorMessageCardPayment();
     }
 
     @DisplayName("Оплата по карте с именем владельца карты в поле «Владелец», если поле заполнено одним словом")
     @Test
     public void paymentCardNameOneWord(){
         var mainPage = new MainPage();
-        var cardInfo = new DataHelper().getNameOneWord();
-        var creditPage = mainPage.buyOnCredit(cardInfo);
+        var cardInfo = DataHelper.getNameOneWord();
+        var creditPage = mainPage.buyOnCredit();
         creditPage.enterCardData(cardInfo);
-        creditPage.errorMessageCardPayment(cardInfo);
+        creditPage.errorMessageCardPayment();
     }
 
     @DisplayName("Оплата по карте с именем владельца карты в поле «Владелец», если поле заполнено спецсимволами")
     @Test
     public void paymentCardNameSpecialCharacters(){
         var mainPage = new MainPage();
-        var cardInfo = new DataHelper().getNameSpecialCharacters();
-        var creditPage = mainPage.buyOnCredit(cardInfo);
+        var cardInfo = DataHelper.getNameSpecialCharacters();
+        var creditPage = mainPage.buyOnCredit();
         creditPage.enterCardData(cardInfo);
-        creditPage.errorMessageCardPayment(cardInfo);
+        creditPage.errorMessageCardPayment();
     }
 
     @DisplayName("Оплата по карте с именем владельца карты в поле «Владелец» без ограничений на ввод букв")
     @Test
     public void paymentCardNameNoRestrictionsInput(){
         var mainPage = new MainPage();
-        var cardInfo = new DataHelper().getNameRandomLetters();
-        var creditPage = mainPage.buyOnCredit(cardInfo);
+        var cardInfo = DataHelper.getNameRandomLetters();
+        var creditPage = mainPage.buyOnCredit();
         creditPage.enterCardData(cardInfo);
-        creditPage.errorMessageCardPayment(cardInfo);
+        creditPage.errorMessageCardPayment();
     }
 
     @DisplayName("Оплата по карте с указанием невалидного формата поля CVC/CVV")
     @Test
     public void paymentCardInvalidCVV(){
         var mainPage = new MainPage();
-        var cardInfo = new DataHelper().getInvalidCVV();
-        var creditPage = mainPage.buyOnCredit(cardInfo);
+        var cardInfo = DataHelper.getInvalidCVV();
+        var creditPage = mainPage.buyOnCredit();
         creditPage.enterCardData(cardInfo);
-        creditPage.invalidFormatError(cardInfo);
+        creditPage.invalidFormatError();
     }
 
     @DisplayName("Оплата по карте нулевым CVC/CVV")
     @Test
     public void paymentCardInvalidZeroCVV(){
         var mainPage = new MainPage();
-        var cardInfo = new DataHelper().getZeroCVV();
-        var creditPage = mainPage.payOnCard(cardInfo);
+        var cardInfo = DataHelper.getZeroCVV();
+        var creditPage = mainPage.payOnCard();
         creditPage.enterCardData(cardInfo);
-        creditPage.invalidFormatError(cardInfo);
+        creditPage.invalidFormatError();
     }
 
 
@@ -207,49 +207,49 @@ public class CreditCardTest {
     @Test
     public void paymentDebitCardEmptyFieldNumberCard(){
         var mainPage = new MainPage();
-        var cardInfo = new DataHelper().getCardNumberEmptyField();
-        var creditPage = mainPage.buyOnCredit(cardInfo);
+        var cardInfo = DataHelper.getCardNumberEmptyField();
+        var creditPage = mainPage.buyOnCredit();
         creditPage.enterCardData(cardInfo);
-        creditPage.invalidFormatError(cardInfo);
+        creditPage.invalidFormatError();
     }
 
     @DisplayName("Месяц")
     @Test
     public void paymentDebitCardMonthEmptyField(){
         var mainPage = new MainPage();
-        var cardInfo = new DataHelper().getMonthEmptyField();
-        var creditPage = mainPage.buyOnCredit(cardInfo);
+        var cardInfo = DataHelper.getMonthEmptyField();
+        var creditPage = mainPage.buyOnCredit();
         creditPage.enterCardData(cardInfo);
-        creditPage.invalidFormatError(cardInfo);
+        creditPage.invalidFormatError();
     }
 
     @DisplayName("Год")
     @Test
     public void paymentDebitCardYearEmptyFiled(){
         var mainPage = new MainPage();
-        var cardInfo = new DataHelper().getYearEmptyFiled();
-        var creditPage = mainPage.buyOnCredit(cardInfo);
+        var cardInfo = DataHelper.getYearEmptyFiled();
+        var creditPage = mainPage.buyOnCredit();
         creditPage.enterCardData(cardInfo);
-        creditPage.invalidFormatError(cardInfo);
+        creditPage.invalidFormatError();
     }
 
     @DisplayName("Владелец")
     @Test
     public void paymentDebitCardNameEmptyFiled(){
         var mainPage = new MainPage();
-        var cardInfo = new DataHelper().getNameEmptyFiled();
-        var creditPage = mainPage.buyOnCredit(cardInfo);
+        var cardInfo = DataHelper.getNameEmptyFiled();
+        var creditPage = mainPage.buyOnCredit();
         creditPage.enterCardData(cardInfo);
-        creditPage.fieldIsRequired(cardInfo);
+        creditPage.fieldIsRequired();
     }
 
     @DisplayName("CVC")
     @Test
     public void paymentDebitCardCVC(){
         var mainPage = new MainPage();
-        var cardInfo = new DataHelper().getCVCEmptyFiled();
-        var creditPage = mainPage.buyOnCredit(cardInfo);
+        var cardInfo = DataHelper.getCVCEmptyFiled();
+        var creditPage = mainPage.buyOnCredit();
         creditPage.enterCardData(cardInfo);
-        creditPage.invalidFormatError(cardInfo);
+        creditPage.invalidFormatError();
     }
 }
